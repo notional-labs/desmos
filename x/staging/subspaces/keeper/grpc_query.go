@@ -23,7 +23,7 @@ func (k Keeper) Subspace(ctx context.Context, request *types.QuerySubspaceReques
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 	subspace, found := k.GetSubspace(sdkCtx, request.SubspaceId)
 	if !found {
-		return nil, sdkerrors.Wrapf(sdkerrors.ErrNotFound, "subspace with id %s not found", request.SubspaceId)
+		return nil, sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "subspace with id %s not found", request.SubspaceId)
 	}
 
 	return &types.QuerySubspaceResponse{Subspace: subspace}, nil
